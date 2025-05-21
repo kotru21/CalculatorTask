@@ -1,22 +1,22 @@
-const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
   // Объединяем с общими настройками
-  mode: "production", // Режим продакшена - с оптимизациями
+  mode: 'production', // Режим продакшена - с оптимизациями
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"], // Извлечение CSS в отдельные файлы
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], // Извлечение CSS в отдельные файлы
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css", // Название CSS-файла с хешем
+      filename: '[name].[contenthash].css', // Название CSS-файла с хешем
     }),
   ],
   optimization: {
