@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -6,12 +6,40 @@
     <title>Калькулятор</title>
   </head>
   <body>
-    <div id="calculator">
+    <div class="calculator">
       <div class="calculator-display">
         <div id="result">0</div>
       </div>
       <div class="calculator-buttons">
-        <!-- Кнопки калькулятора будут добавлены позже -->
+        <div class="row">
+          <button class="btn operation" data-action="clear">C</button>
+          <button class="btn operation" data-action="negate">±</button>
+          <button class="btn operation" data-action="percent">%</button>
+          <button class="btn operation" data-action="divide">÷</button>
+        </div>
+        <div class="row">
+          <button class="btn number" data-value="7">7</button>
+          <button class="btn number" data-value="8">8</button>
+          <button class="btn number" data-value="9">9</button>
+          <button class="btn operation" data-action="multiply">×</button>
+        </div>
+        <div class="row">
+          <button class="btn number" data-value="4">4</button>
+          <button class="btn number" data-value="5">5</button>
+          <button class="btn number" data-value="6">6</button>
+          <button class="btn operation" data-action="subtract">−</button>
+        </div>
+        <div class="row">
+          <button class="btn number" data-value="1">1</button>
+          <button class="btn number" data-value="2">2</button>
+          <button class="btn number" data-value="3">3</button>
+          <button class="btn operation" data-action="add">+</button>
+        </div>
+        <div class="row">
+          <button class="btn number" data-value="0">0</button>
+          <button class="btn number" data-value=".">.</button>
+          <button class="btn operation" data-action="calculate">=</button>
+        </div>
       </div>
     </div>
   </body>
