@@ -81,8 +81,8 @@ export class Display {
 
       this.historyElement.prepend(historyItem);
 
-      // Ограничиваем историю 10 последними операциями
-      if (this.historyElement.children.length > 10) {
+      const maxHistoryItems = 10;
+      if (this.historyElement.children.length > maxHistoryItems) {
         this.historyElement.removeChild(this.historyElement.lastChild);
       }
     }

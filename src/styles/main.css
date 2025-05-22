@@ -179,6 +179,7 @@ body {
 
 /* История вычислений */
 .history-panel {
+  max-height: 80vh;
   width: 300px;
   background-color: #fff;
   border-radius: 10px;
@@ -215,7 +216,7 @@ body {
 
 .history-list {
   list-style: none;
-  max-height: 420px;
+  max-height: 100%;
   overflow-y: auto;
   padding: 10px;
 }

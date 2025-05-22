@@ -390,10 +390,24 @@ export class Calculator {
   }
 
   /**
+   * Устанавливает текущее значение
+   * @param {string} value - новое значение
+   */
+  setCurrentValue(value) {
+    this.currentValue = value;
+    this.resetInput = true;
+    this.updateDisplay();
+  }
+
+  /**
    * Обрабатывает операции с памятью
    */
   handleMemoryOperation(operation) {
+    // Преобразование текущего значения в число
     const currentValueAsNumber = parseFloat(this.currentValue);
+
+    // Проверка на корректное числовое значение
+    const isValidNumber = !Number.isNaN(currentValueAsNumber);
 
     switch (operation) {
       case 'mc': // Memory Clear
@@ -401,6 +415,7 @@ export class Calculator {
         this.hasMemory = false;
         this.display.hideMemoryIndicator();
         break;
+
       case 'mr': // Memory Recall
         if (this.hasMemory) {
           this.currentValue = formatNumber(this.memoryValue);
@@ -408,16 +423,33 @@ export class Calculator {
           this.updateDisplay();
         }
         break;
+
       case 'm-plus': // Memory Add
-        this.memoryValue += currentValueAsNumber;
-        this.hasMemory = true;
-        this.display.showMemoryIndicator();
+        if (isValidNumber) {
+          this.memoryValue += currentValueAsNumber;
+          this.hasMemory = true;
+          this.display.showMemoryIndicator();
+          // Показываем пользователю, что значение было добавлено в память
+          this.display.updateExpression(`M: ${formatNumber(this.memoryValue)}`);
+          setTimeout(() => {
+            this.display.updateExpression('');
+          }, 1000);
+        }
         break;
+
       case 'm-minus': // Memory Subtract
-        this.memoryValue -= currentValueAsNumber;
-        this.hasMemory = true;
-        this.display.showMemoryIndicator();
+        if (isValidNumber) {
+          this.memoryValue -= currentValueAsNumber;
+          this.hasMemory = true;
+          this.display.showMemoryIndicator();
+          // Показываем пользователю, что значение было вычтено из памяти
+          this.display.updateExpression(`M: ${formatNumber(this.memoryValue)}`);
+          setTimeout(() => {
+            this.display.updateExpression('');
+          }, 1000);
+        }
         break;
+
       default:
         // Ничего не делаем для неизвестных операций с памятью
         break;
