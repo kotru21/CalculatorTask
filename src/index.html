@@ -3,44 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Калькулятор</title>
+    <title>Научный калькулятор</title>
   </head>
   <body>
-    <div class="calculator">
-      <div class="calculator-display">
-        <div id="result">0</div>
+    <div class="calculator-container">
+      <div class="calculator">
+        <div class="calculator-display">
+          <div id="memory-indicator" class="memory-indicator"></div>
+          <div id="expression" class="expression"></div>
+          <div id="result" class="result">0</div>
+        </div>
+        <div class="calculator-buttons">
+          <div class="row">
+            <button class="btn memory" data-action="mc">MC</button>
+            <button class="btn memory" data-action="mr">MR</button>
+            <button class="btn memory" data-action="m-plus">M+</button>
+            <button class="btn memory" data-action="m-minus">M-</button>
+          </div>
+          <div class="row">
+            <button class="btn operation" data-action="sin">sin</button>
+            <button class="btn operation" data-action="cos">cos</button>
+            <button class="btn operation" data-action="tan">tan</button>
+            <button class="btn operation" data-action="log">log</button>
+          </div>
+          <div class="row">
+            <button class="btn operation" data-action="square">x²</button>
+            <button class="btn operation" data-action="cube">x³</button>
+            <button class="btn operation" data-action="power">xʸ</button>
+            <button class="btn operation" data-action="sqrt">√</button>
+          </div>
+          <div class="row">
+            <button class="btn operation" data-action="factorial">x!</button>
+            <button class="btn operation" data-action="inverse">1/x</button>
+            <button class="btn operation" data-action="cuberoot">∛</button>
+            <button class="btn operation" data-action="percent">%</button>
+          </div>
+          <div class="row">
+            <button class="btn operation" data-action="clear">C</button>
+            <button class="btn operation" data-action="negate">±</button>
+            <button class="btn operation" data-action="backspace">⌫</button>
+            <button class="btn operation" data-action="divide">÷</button>
+          </div>
+          <div class="row">
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operation" data-action="multiply">×</button>
+          </div>
+          <div class="row">
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operation" data-action="subtract">−</button>
+          </div>
+          <div class="row">
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn operation" data-action="add">+</button>
+          </div>
+          <div class="row">
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn number" data-value=".">.</button>
+            <button class="btn operation" data-action="calculate">=</button>
+          </div>
+        </div>
       </div>
-      <div class="calculator-buttons">
-        <div class="row">
-          <button class="btn operation" data-action="clear">C</button>
-          <button class="btn operation" data-action="negate">±</button>
-          <button class="btn operation" data-action="percent">%</button>
-          <button class="btn operation" data-action="divide">÷</button>
+
+      <div class="history-panel">
+        <div class="history-header">
+          <h3>История вычислений</h3>
+          <button id="clear-history">Очистить</button>
         </div>
-        <div class="row">
-          <button class="btn number" data-value="7">7</button>
-          <button class="btn number" data-value="8">8</button>
-          <button class="btn number" data-value="9">9</button>
-          <button class="btn operation" data-action="multiply">×</button>
-        </div>
-        <div class="row">
-          <button class="btn number" data-value="4">4</button>
-          <button class="btn number" data-value="5">5</button>
-          <button class="btn number" data-value="6">6</button>
-          <button class="btn operation" data-action="subtract">−</button>
-        </div>
-        <div class="row">
-          <button class="btn number" data-value="1">1</button>
-          <button class="btn number" data-value="2">2</button>
-          <button class="btn number" data-value="3">3</button>
-          <button class="btn operation" data-action="add">+</button>
-        </div>
-        <div class="row">
-          <button class="btn number" data-value="0">0</button>
-          <button class="btn number" data-value=".">.</button>
-          <button class="btn operation" data-action="calculate">=</button>
-        </div>
+        <ul id="history-list" class="history-list"></ul>
       </div>
     </div>
+
+    <script>
+      // Для облегчения доступа к калькулятору из Display
+      window.onload = function () {
+        // Экземпляр калькулятора будет доступен глобально
+        window.calculator = document.calculator;
+
+        // Добавляем обработчик для очистки истории
+        document.getElementById('clear-history').addEventListener('click', function () {
+          const historyList = document.getElementById('history-list');
+          if (historyList) {
+            historyList.innerHTML = '';
+          }
+        });
+      };
+    </script>
   </body>
 </html>
