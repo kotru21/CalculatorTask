@@ -317,3 +317,31 @@ export function factorial(n) {
 
   return result;
 }
+
+/**
+ * Вычисление кубического корня
+ * @param {number} value - число, из которого извлекаем кубический корень
+ * @returns {number|string} результат или сообщение об ошибке
+ */
+export function cubeRoot(value) {
+  // Кубический корень, в отличие от квадратного, может извлекаться и из отрицательных чисел
+  if (value < 0) {
+    return -power(Math.abs(value), 1 / 3);
+  }
+
+  if (value === 0) return 0;
+
+  // Используем метод Ньютона для поиска кубического корня
+  // x_{n+1} = (2*x_n + value/x_n^2)/3
+
+  let x = value / 3; // Начальное приближение
+  let prevX = 0;
+
+  for (let i = 0; i < 100 && abs(x - prevX) > 1e-10; i += 1) {
+    prevX = x;
+    const x2 = x * x; // x^2
+    x = (2 * x + value / x2) / 3;
+  }
+
+  return x;
+}

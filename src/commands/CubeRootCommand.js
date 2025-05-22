@@ -1,18 +1,32 @@
 import { Command } from './Command';
-import { power } from '../utils/mathUtils';
+import { cubeRoot } from '../utils/mathUtils';
 
+/**
+ * Команда для извлечения кубического корня
+ */
 export class CubeRootCommand extends Command {
+  /**
+   * @param {number} value - число, из которого извлекаем кубический корень
+   */
   constructor(value) {
     super();
     this.value = value;
     this.originalValue = value;
   }
 
+  /**
+   * Выполняет вычисление кубического корня
+   * @returns {number|string} результат или сообщение об ошибке
+   */
   execute() {
-    this.result = power(this.value, 1 / 3);
+    this.result = cubeRoot(this.value);
     return this.result;
   }
 
+  /**
+   * Отменяет операцию
+   * @returns {number} исходное значение
+   */
   undo() {
     return this.originalValue;
   }
