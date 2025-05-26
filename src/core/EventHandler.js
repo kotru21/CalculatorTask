@@ -22,6 +22,13 @@ export class EventHandler extends BaseCalculator {
       });
     });
 
+    // Обработчики для кнопок памяти
+    document.querySelectorAll('.btn.memory').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.handleMemoryOperation(button.getAttribute('data-action'));
+      });
+    });
+
     // Делаем калькулятор доступным для фокуса
     const calculator = document.querySelector('.calculator');
     if (calculator) {
@@ -63,6 +70,8 @@ export class EventHandler extends BaseCalculator {
           this.handleOperationInput('clear');
           break;
         case 'Backspace':
+          this.backspace();
+          break;
         case 'z':
           if (event.ctrlKey) {
             this.undo();
@@ -72,13 +81,6 @@ export class EventHandler extends BaseCalculator {
           // Ничего не делаем для неподдерживаемых клавиш
           break;
       }
-    });
-
-    // Обработчики для кнопок памяти
-    document.querySelectorAll('.btn.memory').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.handleMemoryOperation(button.getAttribute('data-action'));
-      });
     });
   }
 

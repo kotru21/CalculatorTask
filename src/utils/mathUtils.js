@@ -219,6 +219,13 @@ export function sin(xVal) {
   if (xNormalized > PI) xNormalized -= twoPi;
   if (xNormalized < -PI) xNormalized += twoPi;
 
+  // Проверяем особые значения для повышения точности
+  if (abs(xNormalized) < 1e-15) return 0; // sin(0) = 0
+  if (abs(xNormalized - PI) < 1e-15) return 0; // sin(π) = 0
+  if (abs(xNormalized + PI) < 1e-15) return 0; // sin(-π) = 0
+  if (abs(xNormalized - PI / 2) < 1e-15) return 1; // sin(π/2) = 1
+  if (abs(xNormalized + PI / 2) < 1e-15) return -1; // sin(-π/2) = -1
+
   // sin(x) = x - x^3/3! + x^5/5! - x^7/7! + ...
   let result = xNormalized;
   let term = xNormalized;
@@ -248,6 +255,13 @@ export function cos(xVal) {
   // Приводим x к диапазону [-PI, PI]
   if (xNormalized > PI) xNormalized -= twoPi;
   if (xNormalized < -PI) xNormalized += twoPi;
+
+  // Проверяем особые значения для повышения точности
+  if (abs(xNormalized) < 1e-15) return 1; // cos(0) = 1
+  if (abs(xNormalized - PI) < 1e-15) return -1; // cos(π) = -1
+  if (abs(xNormalized + PI) < 1e-15) return -1; // cos(-π) = -1
+  if (abs(xNormalized - PI / 2) < 1e-15) return 0; // cos(π/2) = 0
+  if (abs(xNormalized + PI / 2) < 1e-15) return 0; // cos(-π/2) = 0
 
   // cos(x) = 1 - x^2/2! + x^4/4! - x^6/6! + ...
   let result = 1;
