@@ -163,42 +163,40 @@ export function ln(x) {
     return 'Error'; // Логарифм не определен для неположительных чисел
   }
 
-  // Используем ряд для ln(1+z): ln(1+z) = z - z^2/2 + z^3/3 - ...
-  // Эффективен для |z| < 1
-
-  let result = 0;
-
   if (x === 1) {
     return 0;
   }
 
-  // Нормализуем число к диапазону [1/sqrt(2), sqrt(2)]
+  // Нормализуем число к диапазону [0.5, 2]
   let k = 0;
   let normalized = x;
 
-  while (normalized > 1.4142) {
-    // sqrt(2) ≈ 1.4142
+  while (normalized > 2) {
     normalized /= 2;
     k += 1;
   }
 
-  while (normalized < 0.7071) {
-    // 1/sqrt(2) ≈ 0.7071
+  while (normalized < 0.5) {
     normalized *= 2;
     k -= 1;
   }
 
-  // Теперь применяем разложение в ряд для ln(1 + (normalized - 1))
-  const z = normalized - 1;
-  let term = z;
-  const sign = 1;
+  // Применяем замену t = (normalized - 1) / (normalized + 1)
+  // ln(normalized) = 2 * (t + t^3/3 + t^5/5 + ...)
+  const t = (normalized - 1) / (normalized + 1);
+  const t2 = t * t;
 
-  for (let i = 1; i <= 100; i += 1) {
-    result += (sign * term) / i;
-    term *= z;
+  let result = 0;
+  let term = t;
 
-    if (abs(term / i) < 1e-12) break;
+  for (let i = 1; i <= 50; i += 2) {
+    result += term / i;
+    term *= t2;
+
+    if (abs(term / i) < 1e-15) break;
   }
+
+  result *= 2;
 
   // Восстанавливаем исходное значение: ln(x) = ln(normalized) + k*ln(2)
   const ln2 = 0.6931471805599453; // ln(2)
@@ -325,23 +323,22 @@ export function factorial(n) {
  */
 export function cubeRoot(value) {
   // Кубический корень, в отличие от квадратного, может извлекаться и из отрицательных чисел
-  if (value < 0) {
-    return -power(Math.abs(value), 1 / 3);
-  }
-
   if (value === 0) return 0;
+
+  const isNegative = value < 0;
+  const absValue = isNegative ? -value : value;
 
   // Используем метод Ньютона для поиска кубического корня
   // x_{n+1} = (2*x_n + value/x_n^2)/3
 
-  let x = value / 3; // Начальное приближение
+  let x = absValue / 3; // Начальное приближение
   let prevX = 0;
 
   for (let i = 0; i < 100 && abs(x - prevX) > 1e-10; i += 1) {
     prevX = x;
     const x2 = x * x; // x^2
-    x = (2 * x + value / x2) / 3;
+    x = (2 * x + absValue / x2) / 3;
   }
 
-  return x;
+  return isNegative ? -x : x;
 }
