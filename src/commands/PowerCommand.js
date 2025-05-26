@@ -33,9 +33,9 @@ export class PowerCommand extends Command {
 
   /**
    * Отменяет операцию
-   * @returns {number} исходное значение основания
+   * @returns {Array} массив с исходными значениями [основание, показатель]
    */
   undo() {
-    return this.originalBase;
+    return [this.originalBase, this.originalExponent];
   }
 }

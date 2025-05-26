@@ -342,3 +342,12 @@ export function cubeRoot(value) {
 
   return isNegative ? -x : x;
 }
+
+/**
+ * Вычисляет натуральный логарифм числа
+ * @param {number} value - число для вычисления логарифма
+ * @returns {number} натуральный логарифм числа
+ */
+export function log(value) {
+  return Math.log(value);
+}

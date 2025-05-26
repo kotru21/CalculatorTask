@@ -19,14 +19,14 @@ describe('FactorialCommand', () => {
     expect(result).toBe(120);
   });
 
-  test('должен вычислять факториал небольшого числа', () => {
-    const command = new FactorialCommand(3);
+  test('должен вычислять факториал большого числа', () => {
+    const command = new FactorialCommand(10);
     const result = command.execute();
-    expect(result).toBe(6);
+    expect(result).toBe(3628800);
   });
 
   test('должен возвращать ошибку для отрицательного числа', () => {
-    const command = new FactorialCommand(-5);
+    const command = new FactorialCommand(-1);
     const result = command.execute();
     expect(result).toBe('Error');
   });
@@ -45,15 +45,21 @@ describe('FactorialCommand', () => {
   });
 
   test('должен сохранять результат после выполнения', () => {
-    const command = new FactorialCommand(4);
-    const result = command.execute();
-    expect(command.result).toBe(24);
-    expect(result).toBe(24);
-  });
-
-  test('должен вычислять факториал большего числа', () => {
     const command = new FactorialCommand(6);
     const result = command.execute();
+    expect(command.result).toBe(720);
     expect(result).toBe(720);
+  });
+
+  test('должен вычислять факториал двойки', () => {
+    const command = new FactorialCommand(2);
+    const result = command.execute();
+    expect(result).toBe(2);
+  });
+
+  test('должен вычислять факториал тройки', () => {
+    const command = new FactorialCommand(3);
+    const result = command.execute();
+    expect(result).toBe(6);
   });
 });

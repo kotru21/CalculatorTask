@@ -1,12 +1,11 @@
 import { Command } from './Command';
-import { factorial } from '../utils/mathUtils';
 
 /**
  * Команда для вычисления факториала
  */
 export class FactorialCommand extends Command {
   /**
-   * @param {number} value - аргумент
+   * @param {number} value - значение для вычисления факториала
    */
   constructor(value) {
     super();
@@ -19,7 +18,22 @@ export class FactorialCommand extends Command {
    * @returns {number|string} результат или сообщение об ошибке
    */
   execute() {
-    this.result = factorial(this.value);
+    // Проверяем, что число целое и неотрицательное
+    if (!Number.isInteger(this.value) || this.value < 0) {
+      return 'Error';
+    }
+
+    // Ограничиваем вычисления для предотвращения переполнения
+    if (this.value > 170) {
+      return 'Error'; // Факториал больших чисел приводит к Infinity
+    }
+
+    let result = 1;
+    for (let i = 2; i <= this.value; i += 1) {
+      result *= i;
+    }
+
+    this.result = result;
     return this.result;
   }
 
