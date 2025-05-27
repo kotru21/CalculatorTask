@@ -100,7 +100,7 @@
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
-  color: var(--color-display);
+  color: contrast(var(--bg-button), black);
 }
 
 .theme-name-input {
@@ -124,7 +124,7 @@
   margin: 0 0 16px 0;
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-display);
+  color: contrast(var(--bg-button), black);
 }
 
 /* Живой предварительный просмотр */
@@ -290,7 +290,7 @@
   border: 2px solid var(--bg-button-hover);
   border-radius: 6px;
   background: var(--bg-calculator);
-  color: var(--color-display);
+  color: contrast(var(--bg-button), black);
   font-size: 14px;
   transition: border-color 0.2s ease;
 }
