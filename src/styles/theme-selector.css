@@ -1,0 +1,306 @@
+/* Стили для селектора тем */
+
+/* Кнопка выбора темы */
+.theme-selector-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: var(--color-display);
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.theme-selector-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Выпадающий список тем */
+.theme-dropdown {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 500px;
+  max-height: 80vh;
+  background: var(--bg-calculator);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.theme-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Header выпадающего списка */
+.theme-dropdown-header {
+  background: var(--bg-display);
+  color: var(--color-display);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-dropdown-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.theme-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-display);
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.theme-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Контент выпадающего списка */
+.theme-dropdown-content {
+  padding: 20px;
+  max-height: calc(80vh - 80px);
+  overflow-y: auto;
+}
+
+/* Секции тем */
+.theme-section {
+  margin-bottom: 24px;
+}
+
+.theme-section:last-child {
+  margin-bottom: 0;
+}
+
+.theme-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-display);
+  opacity: 0.8;
+}
+
+/* Список тем */
+.theme-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Элемент темы */
+.theme-item {
+  background: var(--bg-button);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.theme-item:hover {
+  background: var(--bg-button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-item.active {
+  border-color: var(--bg-button-operation);
+  box-shadow: 0 0 0 1px var(--bg-button-operation);
+}
+
+/* Превью темы */
+.theme-preview-container {
+  margin-bottom: 8px;
+}
+
+.theme-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.preview-display {
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.preview-buttons {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.preview-btn {
+  flex: 1;
+  border-radius: 3px;
+  min-height: 20px;
+}
+
+/* Информация о теме */
+.theme-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-display);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Действия с темой */
+.theme-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.apply-theme-btn,
+.edit-theme-btn,
+.delete-theme-btn {
+  background: var(--bg-button-operation);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.apply-theme-btn:hover {
+  background: var(--bg-button-operation-hover);
+}
+
+.edit-theme-btn {
+  background: var(--bg-button-memory);
+}
+
+.edit-theme-btn:hover {
+  background: var(--bg-button-memory-hover);
+}
+
+.delete-theme-btn {
+  background: var(--bg-button-clear);
+}
+
+.delete-theme-btn:hover {
+  background: var(--bg-button-clear-hover);
+}
+
+/* Кнопка создания темы */
+.create-theme-btn {
+  width: 100%;
+  background: var(--bg-button-memory);
+  border: 2px dashed var(--bg-button-memory-hover);
+  border-radius: 8px;
+  color: white;
+  padding: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.create-theme-btn:hover {
+  background: var(--bg-button-memory-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .theme-dropdown {
+    width: 95vw;
+    max-height: 90vh;
+  }
+
+  .theme-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .theme-preview {
+    height: 60px;
+  }
+
+  .preview-display {
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .preview-btn {
+    min-height: 16px;
+  }
+}
+
+/* Overlay для модального окна */
+.theme-dropdown::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-dropdown.open::before {
+  opacity: 1;
+}
