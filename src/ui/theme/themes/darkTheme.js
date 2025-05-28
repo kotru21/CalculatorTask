@@ -1,0 +1,37 @@
+/**
+ * Темная тема
+ */
+export const darkTheme = {
+  id: 'dark',
+  name: 'Темная тема',
+  variables: {
+    '--bg-body': '#1a1a1a',
+    '--bg-calculator': '#2c2c2c',
+    '--bg-display': '#1e1e1e',
+    '--color-display': '#ffffff',
+    '--color-expression': '#cccccc',
+    '--color-memory': '#64b5f6',
+    '--bg-button': '#404040',
+    '--bg-button-hover': '#505050',
+    '--bg-button-active': '#606060',
+    '--bg-button-operation': '#ff9800',
+    '--bg-button-operation-hover': '#f57c00',
+    '--bg-button-memory': '#2196f3',
+    '--bg-button-memory-hover': '#1976d2',
+    '--bg-button-calculate': '#4caf50',
+    '--bg-button-calculate-hover': '#388e3c',
+    '--bg-button-clear': '#f44336',
+    '--bg-button-clear-hover': '#d32f2f',
+    '--bg-button-scientific': '#9c27b0',
+    '--bg-button-scientific-hover': '#7b1fa2',
+    '--bg-history': '#2c2c2c',
+    '--bg-history-header': '#1e1e1e',
+    '--color-history-header': '#ffffff',
+    '--color-history-button': '#ff9800',
+    '--color-history-button-hover': '#f57c00',
+    '--bg-history-item-hover': '#3c3c3c',
+    '--color-history-expression': '#cccccc',
+    '--color-history-result': '#ffffff',
+    '--border-history-item': '#404040',
+  },
+};

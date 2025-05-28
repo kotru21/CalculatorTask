@@ -18,6 +18,11 @@ module.exports = {
   // Игнорирование определенных директорий
   modulePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
 
+  // Мокирование CSS и других статических файлов
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+  },
+
   // Настройка для отчетов о тестах
   verbose: true,
 };

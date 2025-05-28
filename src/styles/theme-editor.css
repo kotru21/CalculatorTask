@@ -1,0 +1,441 @@
+/* Стили для редактора тем */
+
+/* Модальное окно редактора */
+.theme-editor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.theme-editor-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.theme-editor-content {
+  background: var(--bg-calculator);
+  border-radius: 12px;
+  width: 90vw;
+  max-width: 1000px;
+  height: 90vh;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Заголовок редактора */
+.theme-editor-header {
+  background: var(--bg-display);
+  color: var(--color-display);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-editor-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.theme-editor-close {
+  background: none;
+  border: none;
+  color: var(--color-display);
+  font-size: 28px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.theme-editor-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Основное содержимое */
+.theme-editor-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Боковая панель */
+.theme-editor-sidebar {
+  width: 300px;
+  background: var(--bg-button);
+  border-right: 1px solid var(--border-history-item);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Основная информация о теме */
+.theme-basic-info {
+  margin-bottom: 24px;
+}
+
+.theme-basic-info label {
+  display: block;
+}
+
+.theme-basic-info span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: contrast(var(--bg-button), black);
+}
+
+.theme-name-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid var(--bg-button-hover);
+  border-radius: 6px;
+  background: var(--bg-calculator);
+  color: var(--color-display);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.theme-name-input:focus {
+  outline: none;
+  border-color: var(--bg-button-operation);
+}
+
+/* Секция предварительного просмотра */
+.theme-preview-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: contrast(var(--bg-button), black);
+}
+
+/* Живой предварительный просмотр */
+.theme-preview-live {
+  background: var(--bg-body);
+  border: 2px solid var(--bg-button-hover);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.preview-calculator {
+  background: var(--bg-calculator);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preview-display {
+  background: var(--bg-display);
+  color: var(--color-display);
+  padding: 12px;
+  text-align: right;
+}
+
+.preview-expression {
+  font-size: 12px;
+  color: var(--color-expression);
+  margin-bottom: 4px;
+}
+
+.preview-result {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.preview-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  padding: 8px;
+}
+
+.preview-button {
+  height: 24px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+}
+
+.preview-button.normal {
+  background: var(--bg-button);
+  color: var(--color-display);
+}
+
+.preview-button.operation {
+  background: var(--bg-button-operation);
+}
+
+.preview-button.memory {
+  background: var(--bg-button-memory);
+}
+
+.preview-button.scientific {
+  background: var(--bg-button-scientific);
+}
+
+.preview-button.calculate {
+  background: var(--bg-button-calculate);
+}
+
+.preview-button.clear {
+  background: var(--bg-button-clear);
+}
+
+/* Действия предварительного просмотра */
+.theme-preview-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apply-preview-btn,
+.reset-preview-btn {
+  background: var(--bg-button-memory);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.apply-preview-btn:hover {
+  background: var(--bg-button-memory-hover);
+}
+
+.reset-preview-btn {
+  background: var(--bg-button-clear);
+}
+
+.reset-preview-btn:hover {
+  background: var(--bg-button-clear-hover);
+}
+
+/* Основная область редактирования */
+.theme-editor-main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.theme-fields-container {
+  max-width: 600px;
+}
+
+/* Секции полей */
+.theme-field-section {
+  margin-bottom: 32px;
+}
+
+.theme-field-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-display);
+  border-bottom: 2px solid var(--bg-button-operation);
+  padding-bottom: 8px;
+}
+
+.theme-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Поля ввода */
+.theme-field label {
+  display: block;
+}
+
+.theme-field span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-display);
+}
+
+.theme-field-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-input {
+  padding: 8px 12px;
+  border: 2px solid var(--bg-button-hover);
+  border-radius: 6px;
+  background: var(--bg-calculator);
+  color: contrast(var(--bg-button), black);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.theme-input:focus {
+  outline: none;
+  border-color: var(--bg-button-operation);
+}
+
+.theme-input-color {
+  width: 50px;
+  height: 38px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.theme-input-text {
+  flex: 1;
+  font-family: monospace;
+}
+
+/* Подвал редактора */
+.theme-editor-footer {
+  background: var(--bg-button);
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-history-item);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-editor-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.theme-save-btn,
+.theme-cancel-btn,
+.theme-export-btn,
+.theme-import-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-save-btn {
+  background: var(--bg-button-calculate);
+  color: white;
+}
+
+.theme-save-btn:hover {
+  background: var(--bg-button-calculate-hover);
+}
+
+.theme-cancel-btn {
+  background: var(--bg-button-clear);
+  color: white;
+}
+
+.theme-cancel-btn:hover {
+  background: var(--bg-button-clear-hover);
+}
+
+.theme-import-export {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-export-btn,
+.theme-import-btn {
+  background: var(--bg-button-memory);
+  color: white;
+  font-size: 12px;
+  padding: 8px 16px;
+}
+
+.theme-export-btn:hover,
+.theme-import-btn:hover {
+  background: var(--bg-button-memory-hover);
+}
+
+.theme-import-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Блокировка прокрутки при открытом модальном окне */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .theme-editor-content {
+    width: 95vw;
+    height: 95vh;
+  }
+
+  .theme-editor-body {
+    flex-direction: column;
+  }
+
+  .theme-editor-sidebar {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-history-item);
+  }
+
+  .theme-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-editor-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .theme-editor-actions,
+  .theme-import-export {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-editor-header {
+    padding: 12px 16px;
+  }
+
+  .theme-editor-main,
+  .theme-editor-sidebar {
+    padding: 16px;
+  }
+
+  .theme-field-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .theme-input-color {
+    width: 100%;
+  }
+}
