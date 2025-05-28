@@ -6,6 +6,7 @@
 import { ThemeManager } from './ThemeManager';
 import { ThemeSelector } from './ThemeSelector';
 import { ThemeEditor } from './ThemeEditor';
+import { THEME_EVENTS } from './constants/themeTypes';
 
 export class ThemeSystem {
   constructor() {
@@ -44,7 +45,7 @@ export class ThemeSystem {
    * Генерирует событие инициализации
    */
   dispatchInitEvent() {
-    const event = new CustomEvent('themeSystemInitialized', {
+    const event = new CustomEvent(THEME_EVENTS.SYSTEM_INITIALIZED, {
       detail: {
         themeManager: this.themeManager,
         themeSelector: this.themeSelector,

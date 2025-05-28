@@ -1,0 +1,37 @@
+/**
+ * Зеленая тема
+ */
+export const greenTheme = {
+  id: 'green',
+  name: 'Зеленая тема',
+  variables: {
+    '--bg-body': '#e8f5e8',
+    '--bg-calculator': '#ffffff',
+    '--bg-display': '#2e7d32',
+    '--color-display': '#ffffff',
+    '--color-expression': '#c8e6c9',
+    '--color-memory': '#ff9800',
+    '--bg-button': '#f1f8e9',
+    '--bg-button-hover': '#dcedc8',
+    '--bg-button-active': '#c5e1a5',
+    '--bg-button-operation': '#4caf50',
+    '--bg-button-operation-hover': '#388e3c',
+    '--bg-button-memory': '#ff9800',
+    '--bg-button-memory-hover': '#f57c00',
+    '--bg-button-calculate': '#2e7d32',
+    '--bg-button-calculate-hover': '#1b5e20',
+    '--bg-button-clear': '#f44336',
+    '--bg-button-clear-hover': '#d32f2f',
+    '--bg-button-scientific': '#9c27b0',
+    '--bg-button-scientific-hover': '#7b1fa2',
+    '--bg-history': '#ffffff',
+    '--bg-history-header': '#388e3c',
+    '--color-history-header': '#ffffff',
+    '--color-history-button': '#4caf50',
+    '--color-history-button-hover': '#388e3c',
+    '--bg-history-item-hover': '#f1f8e9',
+    '--color-history-expression': '#388e3c',
+    '--color-history-result': '#2e7d32',
+    '--border-history-item': '#e8f5e8',
+  },
+};

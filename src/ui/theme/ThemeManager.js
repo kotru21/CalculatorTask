@@ -2,12 +2,15 @@
  * Менеджер тем для калькулятора
  * Управляет переключением между предустановленными и пользовательскими темами
  */
-import { predefinedThemes, defaultCustomTheme } from '../../styles/themes';
-import { ThemeStorage } from './ThemeStorage';
+import { predefinedThemes } from './themes/index';
+import { defaultCustomTheme } from './templates/defaultCustomTheme';
+import { ThemeStorageService } from './services/ThemeStorageService';
+import { applyCSSVariables, createThemeEvent } from './utils/themeUtils';
+import { THEME_EVENTS, DEFAULT_THEME_ID } from './constants/themeTypes';
 
 export class ThemeManager {
   constructor() {
-    this.storage = new ThemeStorage();
+    this.storage = new ThemeStorageService();
     this.customThemes = [];
     this.currentTheme = null;
 
@@ -19,28 +22,24 @@ export class ThemeManager {
    * Инициализация менеджера тем
    */
   init() {
-    const savedThemeId = this.storage.loadCurrentTheme();
+    const savedThemeId = this.storage.loadCurrentTheme(DEFAULT_THEME_ID);
     this.applyTheme(savedThemeId);
   }
 
   /**
    * Применяет тему по ID
    * @param {string} themeId - ID темы
-   */
-  applyTheme(themeId) {
+   */ applyTheme(themeId) {
     const theme = this.getThemeById(themeId);
     if (!theme) {
       /* eslint-disable-next-line no-console */
       console.warn(`Тема с ID ${themeId} не найдена, применяется светлая тема`);
-      this.applyTheme('light');
+      this.applyTheme(DEFAULT_THEME_ID);
       return;
     }
 
     // Применяем CSS переменные
-    const root = document.documentElement;
-    Object.entries(theme.variables).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
+    applyCSSVariables(theme.variables);
 
     this.currentTheme = theme;
     this.storage.saveCurrentTheme(themeId);
@@ -179,9 +178,7 @@ export class ThemeManager {
    * @param {Object} theme - Применённая тема
    */
   dispatchThemeChangeEvent(theme) {
-    const event = new CustomEvent('themeChanged', {
-      detail: { theme },
-    });
+    const event = createThemeEvent(theme, THEME_EVENTS.THEME_CHANGED);
     document.dispatchEvent(event);
   }
 

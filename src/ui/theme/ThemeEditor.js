@@ -1,7 +1,8 @@
 /**
  * Редактор пользовательских тем
  */
-import { defaultCustomTheme } from '../../styles/themes';
+import { defaultCustomTheme } from './templates/defaultCustomTheme';
+import { THEME_FIELD_GROUPS } from './constants/themeTypes';
 
 export class ThemeEditor {
   constructor(themeManager) {
@@ -9,45 +10,8 @@ export class ThemeEditor {
     this.modal = null;
     this.currentTheme = null;
     this.isEditing = false;
-    this.previewApplied = false;
-
-    // Конфигурация полей для редактирования
-    this.themeFields = {
-      'Основные цвета': {
-        '--bg-body': { label: 'Фон страницы', type: 'color' },
-        '--bg-calculator': { label: 'Фон калькулятора', type: 'color' },
-        '--bg-display': { label: 'Фон дисплея', type: 'color' },
-        '--color-display': { label: 'Цвет текста дисплея', type: 'color' },
-        '--color-expression': { label: 'Цвет выражения', type: 'color' },
-        '--color-memory': { label: 'Цвет индикатора памяти', type: 'color' },
-      },
-      Кнопки: {
-        '--bg-button': { label: 'Фон обычных кнопок', type: 'color' },
-        '--bg-button-hover': { label: 'Фон кнопок при наведении', type: 'color' },
-        '--bg-button-active': { label: 'Фон активных кнопок', type: 'color' },
-        '--bg-button-operation': { label: 'Фон кнопок операций', type: 'color' },
-        '--bg-button-operation-hover': { label: 'Фон операций при наведении', type: 'color' },
-        '--bg-button-memory': { label: 'Фон кнопок памяти', type: 'color' },
-        '--bg-button-memory-hover': { label: 'Фон памяти при наведении', type: 'color' },
-        '--bg-button-calculate': { label: 'Фон кнопки "="', type: 'color' },
-        '--bg-button-calculate-hover': { label: 'Фон "=" при наведении', type: 'color' },
-        '--bg-button-clear': { label: 'Фон кнопки очистки', type: 'color' },
-        '--bg-button-clear-hover': { label: 'Фон очистки при наведении', type: 'color' },
-        '--bg-button-scientific': { label: 'Фон научных функций', type: 'color' },
-        '--bg-button-scientific-hover': { label: 'Фон научных при наведении', type: 'color' },
-      },
-      История: {
-        '--bg-history': { label: 'Фон панели истории', type: 'color' },
-        '--bg-history-header': { label: 'Фон заголовка истории', type: 'color' },
-        '--color-history-header': { label: 'Цвет заголовка истории', type: 'color' },
-        '--color-history-button': { label: 'Цвет кнопок истории', type: 'color' },
-        '--color-history-button-hover': { label: 'Цвет кнопок при наведении', type: 'color' },
-        '--bg-history-item-hover': { label: 'Фон элемента при наведении', type: 'color' },
-        '--color-history-expression': { label: 'Цвет выражений истории', type: 'color' },
-        '--color-history-result': { label: 'Цвет результатов истории', type: 'color' },
-        '--border-history-item': { label: 'Цвет границ элементов', type: 'color' },
-      },
-    };
+    this.previewApplied = false; // Конфигурация полей для редактирования
+    this.themeFields = THEME_FIELD_GROUPS;
   }
 
   /**
