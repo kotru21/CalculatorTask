@@ -25,7 +25,7 @@ Scientific calculator with modern interface, theme support, and advanced functio
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kotru21/CalculatorTask
    cd CalculatorTask
    ```
 
